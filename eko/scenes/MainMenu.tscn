@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://htn8enwnynlr"]
+
+[ext_resource type="Script" uid="uid://qefmor563mby" path="res://scripts/MainMenu.gd" id="1_yqorp"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_yqorp")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 64.0
+offset_right = 690.0
+offset_bottom = 87.0
+text = "EKO - Simon Says Adventure"
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 104.0
+offset_right = 680.0
+offset_bottom = 136.0
+text = "Start Game"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 152.0
+offset_right = 680.0
+offset_bottom = 184.0
+text = "Quit"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 216.0
+offset_right = 680.0
+offset_bottom = 576.0
+text = "Repeat the blinking pattern by moving your character to press the buttons in order. Collect Replay Orbs to replay the pattern (3 uses max). Score points per round. Lose a life on wrong press; 3 lives total. Reach 10 rounds to win or aim for high score!"
+editable = false
+wrap_mode = 1
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

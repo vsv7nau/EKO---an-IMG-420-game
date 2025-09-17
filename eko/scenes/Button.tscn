@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://386ox3eaw70n"]
+
+[ext_resource type="Script" uid="uid://ddd8ug4m4ja4t" path="res://scripts/Button.gd" id="1_rtit6"]
+[ext_resource type="Texture2D" uid="uid://bqswu8inopxdo" path="res://icon.svg" id="2_ywcaw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sejoc"]
+size = Vector2(128, 128)
+
+[sub_resource type="Animation" id="Animation_rtit6"]
+resource_name = "blink"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.055953145, 1e-05),
+"update": 0,
+"values": [Color(4.7168137e-06, 0.6062254, 0.6069926, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ywcaw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sejoc"]
+_data = {
+&"RESET": SubResource("Animation_ywcaw"),
+&"blink": SubResource("Animation_rtit6")
+}
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_rtit6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ywcaw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sejoc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sejoc")
+}
+speed_scale = 0.25
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
